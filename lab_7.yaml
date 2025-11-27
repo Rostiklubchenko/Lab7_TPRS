@@ -1,24 +1,18 @@
-apiVersion: '2021-09-01'
-location: eastus
-name: nginx-hello-container
-properties:
-  containers:
-  - name: nginx-hello
-    properties:
-      image: nginxdemos/hello:latest
-      resources:
-        requests:
-          cpu: 1
-          memoryInGb: 1.5
-      ports:
-      - port: 80
-        protocol: TCP
-  osType: Linux
-  ipAddress:
-    type: Public
-    ports:
-    - protocol: TCP
-      port: 80
-  restartPolicy: Always
-tags: null
-type: Microsoft.ContainerInstance/containerGroups
+containers:
+- name: nginx-hello
+  image: nginxdemos/hello:latest
+  resources:
+    requests:
+      cpu: 1
+      memoryInGB: 1.5
+  ports:
+  - port: 80
+    protocol: TCP
+
+osType: Linux
+ipAddress:
+  type: Public
+  ports:
+  - protocol: TCP
+    port: 80
+restartPolicy: Always
