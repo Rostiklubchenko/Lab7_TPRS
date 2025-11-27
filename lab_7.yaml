@@ -1,6 +1,22 @@
-services:
-  hello-nginx:
-    image: nginxdemos/hello:latest
+apiVersion: 2021-10-01
+location: europe # Замените на нужный вам регион Azure
+name: nginx-hello-container-group
+properties:
+  containers:
+  - name: nginx-hello
+    properties:
+      image: nginxdemos/hello:latest # Используем готовый образ с Docker Hub
+      resources:
+        requests:
+          cpu: 1.0
+          memoryInGB: 1.5
+      ports:
+      - port: 80
+  osType: Linux
+  ipAddress:
+    type: Public
     ports:
-      - "80:80"
-    restart: always
+    - protocol: Tcp
+      port: 80
+tags: null
+type: Microsoft.ContainerInstance/containerGroups
